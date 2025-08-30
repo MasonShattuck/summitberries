@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Contact Us</h1>
+<p class="lead">We’d love to hear from you. Reach out today for a free consultation.</p>
+
+<form method="POST">
+  <div class="mb-3">
+    <label>Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Email</label>
+    <input type="email" name="email" class="form-control" required>
+  </div>
+  <div class="mb-3">
+    <label>Phone</label>
+    <input type="text" name="phone" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label>Message</label>
+    <textarea name="message" class="form-control" rows="5" required></textarea>
+  </div>
+  <button type="submit" class="btn btn-success">Send Message</button>
+</form>
+
+<hr>
+<p class="mt-4">
+  📍 257 Daly Ave, Park City, UT 84060 <br>
+  📞 385-481-0698 <br>
+  ✉️ parkcityberries@gmail.com
+</p>
+{% endblock %}
