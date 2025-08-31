@@ -1,79 +1,66 @@
-/* ---- Summit Berries theme ---- */
+/* ---- Summit Berries basic theme ---- */
 :root{
   --sb-primary: #0f766e;   /* teal */
   --sb-dark:    #0b3b39;
   --sb-light:   #f5f7f8;
+  --sb-grey:    #5a646b;   /* navbar grey */
 }
 
-body {
-  background: url("/static/parkcity.jpg") center/cover no-repeat fixed;
-  color: #fff;   /* make text white over dark image */
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+body{ background:#fff; margin:0; font-family: Arial, sans-serif; }
 
-.navbar {
-  background: #5a646b !important; /* grey top bar */
+/* Navbar + footer */
+.navbar { 
+  background: var(--sb-grey) !important; 
 }
-
-footer {
-  margin-top: auto; /* push to bottom */
-  background: rgba(0,0,0,0.7); /* semi-transparent for readability */
-  color: #fff;
-  text-align: center;
-  padding: 1rem;
+footer{ 
+  background: var(--sb-dark) !important; 
+  color:#fff; 
+  text-align:center; 
+  padding:1rem;
 }
+footer a{ color:#fff; text-decoration: underline; }
 
-.btn-primary {
+/* Buttons */
+.btn-primary{
   background: var(--sb-primary);
   border-color: var(--sb-primary);
 }
 .btn-primary:hover{ filter: brightness(0.95); }
 
-/* hero section text stays readable */
-.hero::before{
-  content:"";
-  position:absolute; inset:0;
-  background: rgba(0,0,0,0.4); /* dark overlay */
-}
-.hero {
+/* Hero section (homepage only) */
+.hero{
   position: relative;
-  min-height: 80vh;
+  min-height: 100vh;
+  background: url("/static/parkcity-bg.jpg") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: #fff;
-  overflow: hidden;
+  color: white;
 }
-
-.hero::before {
+.hero::after{
   content:"";
-  position:absolute;
-  inset:0;
-  background: url("/static/parkcity.jpg") center/cover no-repeat;
-  filter: brightness(0.6); /* darkens background so text shows */
+  position:absolute; inset:0;
+  background: rgba(0,0,0,0.45); /* dark overlay for readability */
 }
-
-.hero::after {
-  content:"";
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,0.4); /* overlay for better text visibility */
-}
-
-.hero-inner {
-  position: relative;
+.hero-inner{
+  position: relative; 
   z-index: 1;
+  max-width: 900px; 
+  padding: 0 1rem;
 }
-
-.hero-logo {
-  max-width: 220px; /* adjust size of logo */
+.hero-logo{
+  max-width: 250px;   /* make logo bigger */
+  margin-bottom: 20px;
 }
-
-.tagline {
+.tagline{
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 500;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.8); /* keeps text visible */
+  margin-bottom: 20px;
 }
 
+/* Sections */
+.section{ padding: 3rem 0; }
+.section-muted{ background: var(--sb-light); }
+.card-icon{ font-size: 1.75rem; line-height: 1; margin-right: .5rem; }
