@@ -1,30 +1,56 @@
 {% extends "base.html" %}
-
 {% block content %}
-<h1>Our Portfolio</h1>
-<p class="lead">Showcasing the properties we proudly manage in Park City, Utah.</p>
 
-<p>(Photos and property details will be added here soon.)</p>
+<div class="container py-4">
+  <h1 class="mb-1">Portfolio</h1>
+  <p class="text-muted mb-4">Recent project: pool repainting, surface repair, and maintenance.</p>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <img src="https://placehold.co/400x250" class="card-img-top" alt="Property 1">
-      <div class="card-body">
-        <h5 class="card-title">Mountain Retreat</h5>
-        <p class="card-text">Luxury rental property with full maintenance service.</p>
+  <!-- Before vs After cards -->
+  <div class="row g-4 align-items-stretch">
+    <!-- BEFORE -->
+    <div class="col-12 col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header fw-semibold">Before</div>
+        <img
+          src="{{ url_for('static', filename='pool.jpg') }}"
+          class="card-img-top"
+          alt="Pool before (wide)"
+        >
+        <div class="card-body p-2">
+          <img
+            src="{{ url_for('static', filename='pool2.jpg') }}"
+            class="img-fluid rounded"
+            alt="Pool before (close)"
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- AFTER -->
+    <div class="col-12 col-md-6">
+      <div class="card h-100 shadow-sm">
+        <div class="card-header fw-semibold">After</div>
+        <img
+          src="{{ url_for('static', filename='pooldone.jpg') }}"
+          class="card-img-top"
+          alt="Pool after (wide)"
+        >
+        <div class="card-body p-2">
+          <img
+            src="{{ url_for('static', filename='pooldone2.jpg') }}"
+            class="img-fluid rounded"
+            alt="Pool after (close)"
+          >
+        </div>
       </div>
     </div>
   </div>
 
-  <div class="col-md-4">
-    <div class="card mb-4">
-      <img src="https://placehold.co/400x250" class="card-img-top" alt="Property 2">
-      <div class="card-body">
-        <h5 class="card-title">Ski-In Chalet</h5>
-        <p class="card-text">Managed for short-term rentals and seasonal maintenance.</p>
-      </div>
-    </div>
+  <hr class="my-5">
+
+  <div class="text-center">
+    <a href="/contact" class="btn btn-primary btn-lg">Request a Consultation</a>
   </div>
 </div>
+
 {% endblock %}
