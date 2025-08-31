@@ -1,66 +1,44 @@
-/* ---- Summit Berries basic theme ---- */
-:root{
-  --sb-primary: #0f766e;   /* teal */
-  --sb-dark:    #0b3b39;
-  --sb-light:   #f5f7f8;
-  --sb-grey:    #5a646b;   /* navbar grey */
+/* ---- Summit Berries Theme ---- */
+:root {
+  --sb-primary: #0f766e;
+  --sb-dark: #333;
+  --sb-light: #f5f7f8;
 }
 
-body{ background:#fff; margin:0; font-family: Arial, sans-serif; }
-
-/* Navbar + footer */
-.navbar { 
-  background: var(--sb-grey) !important; 
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: url("/static/parkcity-bg.jpg") center/cover no-repeat fixed;
+  color: #fff;
 }
-footer{ 
-  background: var(--sb-dark) !important; 
-  color:#fff; 
-  text-align:center; 
-  padding:1rem;
-}
-footer a{ color:#fff; text-decoration: underline; }
 
-/* Buttons */
-.btn-primary{
-  background: var(--sb-primary);
-  border-color: var(--sb-primary);
+.navbar {
+  background: rgba(51, 51, 51, 0.9) !important;
 }
-.btn-primary:hover{ filter: brightness(0.95); }
 
-/* Hero section (homepage only) */
-.hero{
-  position: relative;
-  min-height: 100vh;
-  background: url("/static/parkcity-bg.jpg") center/cover no-repeat;
+footer {
+  background: rgba(51, 51, 51, 0.9);
+  color: #fff;
+}
+
+/* Hero (only on homepage) */
+.hero {
+  min-height: 90vh;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
+  align-items: center;
   text-align: center;
-  color: white;
-}
-.hero::after{
-  content:"";
-  position:absolute; inset:0;
-  background: rgba(0,0,0,0.45); /* dark overlay for readability */
-}
-.hero-inner{
-  position: relative; 
-  z-index: 1;
-  max-width: 900px; 
-  padding: 0 1rem;
-}
-.hero-logo{
-  max-width: 250px;   /* make logo bigger */
-  margin-bottom: 20px;
-}
-.tagline{
-  font-size: 1.5rem;
-  font-weight: 500;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.8); /* keeps text visible */
-  margin-bottom: 20px;
+  background: rgba(0,0,0,0.4);
 }
 
-/* Sections */
-.section{ padding: 3rem 0; }
-.section-muted{ background: var(--sb-light); }
-.card-icon{ font-size: 1.75rem; line-height: 1; margin-right: .5rem; }
+.hero-logo {
+  max-width: 300px;
+  height: auto;
+}
+
+.tagline {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}

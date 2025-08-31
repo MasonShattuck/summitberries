@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="hero">
-  <div class="hero-inner">
-    <img src="{{ url_for('static', filename='logo.png') }}" alt="Summit Berries LLC Logo" class="hero-logo">
+  <div class="hero-inner text-center">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Summit Berries LLC" class="hero-logo mb-3">
     <h2 class="tagline">Property Management with Purpose, Precision, and Care</h2>
-    <a href="/contact" class="btn btn-primary btn-lg">Request a Consultation</a>
+    <a href="/contact" class="btn btn-primary btn-lg mt-3">Request a Consultation</a>
   </div>
 </div>
 {% endblock %}
