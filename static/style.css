@@ -44,3 +44,8 @@ body{ background:#fff; }
 .section{ padding: 3rem 0; }
 .section-muted{ background: var(--sb-light); }
 .card-icon{ font-size: 1.75rem; line-height: 1; margin-right: .5rem; }
+/* ---- Override navbar/footer to grey ---- */
+.navbar, footer {
+  background-color: #6c757d !important; /* medium grey */
+}
+
