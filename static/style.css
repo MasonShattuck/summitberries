@@ -6,8 +6,8 @@
 }
 
 body {
-  background:#fff;
-  color: #fff;   /* make ALL text white site-wide */
+  background: #fff;
+  color: #fff;   /* make all text white */
 }
 
 .navbar, footer {
@@ -36,14 +36,18 @@ body {
   content:"";
   position:absolute; inset:0;
   background: url("/static/hero.jpg") center/cover no-repeat;
-  /* no dark overlay now */
+  z-index: -1;   /* show background behind everything */
 }
+/* remove the dark overlay entirely */
 .hero::after {
-  display: none; /* remove overlay */
+  display: none;
 }
 .hero > .hero-inner {
-  position: relative; z-index: 1;
-  max-width: 900px; padding: 0 1rem;
+  position: relative; 
+  z-index: 1;
+  max-width: 900px; 
+  padding: 0 1rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* makes text readable */
 }
 
 .section { padding: 3rem 0; }
