@@ -1,16 +1,5 @@
 # app.py — Summit Berries LLC
-# -------------------------------------------------
-# This Flask app serves your site and sends contact
-# form submissions via Gmail SMTP (App Password).
-#
-# Environment variables required on Render:
-#   SECRET_KEY      = a long random string
-#   SMTP_SERVER     = smtp.gmail.com
-#   SMTP_PORT       = 587
-#   SMTP_USERNAME   = parkcityberries@gmail.com
-#   SMTP_PASSWORD   = <your 16-char Gmail App Password>
-#   TO_EMAIL        = parkcityberries@gmail.com  (or any inbox you want)
-# -------------------------------------------------
+# Flask site + email via Gmail SMTP (App Password)
 
 import os
 import smtplib, ssl
@@ -19,17 +8,23 @@ from flask import Flask, render_template, request, redirect, url_for, flash, jso
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
 
-# Secrets / SMTP config (from environment on Render)
-app.secret_key  = os.getenv("SECRET_KEY", "dev-secret")
-SMTP_SERVER     = os.getenv("SMTP_SERVER", "smtp.gmail.com")
-SMTP_PORT       = int(os.getenv("SMTP_PORT", "587"))
-SMTP_USERNAME   = os.getenv("SMTP_USERNAME")          # e.g., parkcityberries@gmail.com
-SMTP_PASSWORD   = os.getenv("SMTP_PASSWORD")          # Gmail App Password
-TO_EMAIL        = os.getenv("TO_EMAIL") or SMTP_USERNAME
+# ------------ Config (supports two naming schemes) ------------
+# Prefer SMTP_* / TO_EMAIL if present; otherwise fall back to MAIL_* / CONTACT_RCPT
+def _get(key_primary, fallback_key, default=None):
+    v = os.getenv(key_primary)
+    return v if v is not None else os.getenv(fallback_key, default)
+
+app.secret_key  = os.getenv("SECRET_KEY", "dev-secret")          # set SECRET_KEY on Render
+
+SMTP_SERVER     = _get("SMTP_SERVER",   "MAIL_SERVER",   "smtp.gmail.com")
+SMTP_PORT       = int(_get("SMTP_PORT", "MAIL_PORT",     "587"))
+SMTP_USERNAME   = _get("SMTP_USERNAME", "MAIL_USERNAME")         # e.g. parkcityberries@gmail.com
+SMTP_PASSWORD   = _get("SMTP_PASSWORD", "MAIL_PASSWORD")         # 16-char Gmail App Password (no spaces)
+TO_EMAIL        = _get("TO_EMAIL",      "CONTACT_RCPT") or SMTP_USERNAME
 
 
 def send_email(name: str, email: str, phone: str, message: str) -> None:
-    """Send an inquiry email via Gmail SMTP with TLS."""
+    """Send an inquiry email via SMTP with STARTTLS."""
     if not (SMTP_USERNAME and SMTP_PASSWORD and TO_EMAIL):
         raise RuntimeError("SMTP credentials not configured")
 
@@ -41,26 +36,23 @@ def send_email(name: str, email: str, phone: str, message: str) -> None:
         f"Phone: {phone}\n\n"
         f"Message:\n{message}\n"
     )
-
-    msg = MIMEText(body)
+    msg = MIMEText(body, "plain", "utf-8")
     msg["Subject"] = subject
     msg["From"]    = SMTP_USERNAME
     msg["To"]      = TO_EMAIL
 
-    context = ssl.create_default_context()
-    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=20) as server:
-        server.starttls(context=context)
-        server.login(SMTP_USERNAME, SMTP_PASSWORD)
-        server.send_message(msg)
+    ctx = ssl.create_default_context()
+    with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=20) as s:
+        s.starttls(context=ctx)
+        s.login(SMTP_USERNAME, SMTP_PASSWORD)
+        s.send_message(msg)
 
-
-# --------- Health check for Render pings ----------
+# ---------------- Health check for Render ----------------
 @app.route("/health")
 def health():
     return jsonify(status="ok"), 200
 
-
-# ------------------- Pages ------------------------
+# ------------------------- Pages -------------------------
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -85,23 +77,29 @@ def contact():
         phone   = (request.form.get("phone") or "").strip()
         message = (request.form.get("message") or "").strip()
 
-        # Basic validation
+        # basic validation
         if not (name and email and message):
             flash("Please fill in your name, email, and message.", "warning")
+            return redirect(url_for("contact"))
+
+        # simple honeypot (optional)
+        if request.form.get("website"):
+            # treated as spam; pretend success
+            flash("Thanks! Your message was sent.", "success")
             return redirect(url_for("contact"))
 
         try:
             send_email(name, email, phone, message)
             flash("Thanks! Your message was sent. We’ll get back to you shortly.", "success")
-        except Exception:
-            # For debugging locally you could: print(e)
+        except Exception as e:
+            app.logger.exception("Email send failed: %s", e)
             flash("Sorry—something went wrong sending your message. Please email us directly.", "danger")
 
-        return redirect(url_for("home"))
+        return redirect(url_for("contact"))
 
     return render_template("contact.html")
 
 
-# --------------- Local run ------------------------
+# ---------------------- Local run -----------------------
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.getenv("PORT", "5000")), debug=True)
