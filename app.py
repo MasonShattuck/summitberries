@@ -1,7 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
-
+# Health check endpoint for uptime pings
+@app.route("/health", methods=["GET"])
+def health():
+    return "ok", 200
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -34,3 +37,4 @@ def contact():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
