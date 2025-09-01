@@ -6,9 +6,10 @@
 
 /* Global site background */
 body {
-  background: url("/static/hero.jpg") center/cover no-repeat fixed;
+  background: url("{{ url_for('static', filename='hero.jpg') }}") center/cover no-repeat fixed;
   color: #fff; /* Make ALL text white */
   margin: 0;
+  min-height: 100vh;
 }
 
 /* Navbar + footer */
@@ -27,6 +28,7 @@ body {
 }
 .btn-primary:hover { filter: brightness(0.95); }
 
+/* Hero (just centers content, no background here!) */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -35,7 +37,6 @@ body {
   justify-content: center;
   text-align: center;
   color: #fff;
-  background: url("/static/hero.jpg") center/cover no-repeat fixed;
 }
 
 .hero-inner {
@@ -53,4 +54,3 @@ body {
   max-height: 200px;
   margin-bottom: 1rem;
 }
-
