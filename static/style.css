@@ -7,11 +7,15 @@
 
 body {
   background: #fff;
-  color: #fff;   /* make all text white */
+  color: #fff;   /* all text white */
 }
 
 .navbar, footer {
   background: var(--sb-dark) !important;
+}
+
+.navbar a, .navbar-brand {
+  color: #fff !important;
 }
 
 /* Buttons */
@@ -22,23 +26,23 @@ body {
 }
 .btn-primary:hover { filter: brightness(0.95); }
 
-/* Hero section (homepage) */
+/* Hero section (homepage only) */
 .hero {
   position: relative;
   min-height: 100vh;
   display: grid;
   place-items: center;
-  color: #fff;
   text-align: center;
   overflow: hidden;
+  color: #fff;
 }
 .hero::before {
   content:"";
   position:absolute; inset:0;
   background: url("/static/hero.jpg") center/cover no-repeat;
-  z-index: -1;   /* show background behind everything */
+  z-index: -1;   /* background behind content */
 }
-/* remove the dark overlay entirely */
+/* remove the dark overlay completely */
 .hero::after {
   display: none;
 }
@@ -47,7 +51,7 @@ body {
   z-index: 1;
   max-width: 900px; 
   padding: 0 1rem;
-  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* makes text readable */
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.7); /* readable text */
 }
 
 .section { padding: 3rem 0; }
