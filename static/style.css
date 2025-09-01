@@ -1,44 +1,51 @@
-/* ---- Summit Berries Theme ---- */
-:root {
-  --sb-primary: #0f766e;
-  --sb-dark: #333;
-  --sb-light: #f5f7f8;
+/* ---- Summit Berries basic theme ---- */
+:root{
+  --sb-primary: #0f766e;   /* teal */
+  --sb-dark:    #0b3b39;
+  --sb-light:   #f5f7f8;
 }
 
 body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: url("/static/parkcity-bg.jpg") center/cover no-repeat fixed;
+  background:#fff;
+  color: #fff;   /* make ALL text white site-wide */
+}
+
+.navbar, footer {
+  background: var(--sb-dark) !important;
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--sb-primary);
+  border-color: var(--sb-primary);
   color: #fff;
 }
+.btn-primary:hover { filter: brightness(0.95); }
 
-.navbar {
-  background: rgba(51, 51, 51, 0.9) !important;
-}
-
-footer {
-  background: rgba(51, 51, 51, 0.9);
-  color: #fff;
-}
-
-/* Hero (only on homepage) */
+/* Hero section (homepage) */
 .hero {
-  min-height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  color: #fff;
   text-align: center;
-  background: rgba(0,0,0,0.4);
+  overflow: hidden;
+}
+.hero::before {
+  content:"";
+  position:absolute; inset:0;
+  background: url("/static/hero.jpg") center/cover no-repeat;
+  /* no dark overlay now */
+}
+.hero::after {
+  display: none; /* remove overlay */
+}
+.hero > .hero-inner {
+  position: relative; z-index: 1;
+  max-width: 900px; padding: 0 1rem;
 }
 
-.hero-logo {
-  max-width: 300px;
-  height: auto;
-}
-
-.tagline {
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
-}
+.section { padding: 3rem 0; }
+.section-muted { background: var(--sb-light); }
+.card-icon { font-size: 1.75rem; line-height: 1; margin-right: .5rem; }
