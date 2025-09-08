@@ -21,17 +21,49 @@ input, textarea {
 }
 
 /* Make the photo the site-wide background (absolute path) */
+/* ===== SITE BACKGROUND SWITCH (Hero photo only at top) ===== */
+:root{
+  --page-bg: #0e1115;       /* solid page background under content */
+}
+
+/* Solid background for the whole site */
 html, body { height: 100%; }
 body{
   margin: 0;
-  color: #fff;                               /* text white everywhere */
-  background-image: url("/static/hero.jpg"); /* <- absolute path */
+  background: var(--page-bg);
+  color: #fff;
+}
+
+/* The HERO owns the photo now (not the whole page) */
+.hero, .sb-hero{
+  position: relative;
+  min-height: calc(100vh - 140px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background-image: url("/static/hero.jpg");
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
-  background-attachment: fixed;
-  min-height: 100vh;
 }
+
+/* dark overlay on the hero for contrast */
+.hero::before, .sb-hero::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+              rgba(0,0,0,.55) 0%,
+              rgba(0,0,0,.35) 40%,
+              rgba(0,0,0,.55) 100%);
+}
+.hero .hero-inner, .sb-hero .hero-inner{ position: relative; z-index: 1; }
+
+/* keep navbar clickable above hero */
+.navbar{ position: relative; z-index: 1000; }
+
 
 /* Keep content from painting over the photo */
 main, .container, .card, .list-group, .list-group-item, .table, .bg-white{
@@ -85,4 +117,292 @@ a:hover{ color:#ffffff; }
 }
 .glass li{
   margin-bottom: .35rem;
+}
+/* --- About page readability --- */
+.glass {
+  background: rgba(0,0,0,0.65);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  color: #fff;
+}
+
+/* --- Keep footer at bottom --- */
+html, body {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+footer {
+  background: rgba(15,15,15,0.9);
+  color: #fff;
+  padding: 1rem;
+  text-align: center;
+}
+/* --- keep navbar clickable above page content --- */
+.navbar { position: relative; z-index: 1000; }
+
+/* page header band */
+.sb-pagehead {
+  background: rgba(15,15,15,0.92);
+  color: #fff;
+}
+
+/* generic section spacing */
+.sb-section { padding: 3rem 0; }
+.sb-section--alt { background: rgba(0,0,0,0.15); }      /* subtle contrast */
+.sb-section--transparent { background: transparent; }
+
+/* readable card on top of busy background */
+.sb-card {
+  background: rgba(255,255,255,0.96);
+  border-radius: 16px;
+  padding: 1.75rem;
+  color: #111;
+}
+
+.sb-card--glass {
+  background: rgba(0,0,0,0.65);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px;
+  backdrop-filter: blur(4px);
+}
+
+/* values list */
+.sb-list { 
+  list-style: none; 
+  padding-left: 0; 
+  margin: 0 auto; 
+  max-width: 900px; 
+}
+.sb-list li { 
+  margin-bottom: .6rem; 
+  padding-left: 0; 
+}
+
+/* ensure sections never overlay the navbar */
+.sb-section, .sb-pagehead { position: relative; z-index: 1; }
+
+/* ==================== READABILITY KIT v2 ==================== */
+/* Slightly-off white reads better than pure #fff on photos */
+:root{
+  --sb-text: #f3f6fb;
+  --sb-stroke: rgba(0,0,0,.48);
+}
+
+/* Use on any block that sits over a photo */
+.sb-readable{
+  color: var(--sb-text);
+  letter-spacing: .2px;
+  line-height: 1.25;
+  text-shadow:
+    0 0 1px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.75),
+    0 10px 24px rgba(0,0,0,.55);
+}
+
+/* Heavier treatment for big titles (matte rim) */
+.sb-readable h1,
+.sb-readable .h1,
+.sb-readable h2,
+.sb-readable .h2{
+  font-weight: 800;
+  /* Works in Chrome/Safari/Edge */
+  -webkit-text-stroke: .6px var(--sb-stroke);
+}
+
+/* Fallback when -webkit-text-stroke isn't supported (e.g., Firefox) */
+@supports not (-webkit-text-stroke: 1px black) {
+  .sb-readable h1,
+  .sb-readable .h1,
+  .sb-readable h2,
+  .sb-readable .h2{
+    /* simulate a thin outline with multi-directional shadows */
+    text-shadow:
+      -0.5px 0   var(--sb-stroke),
+       0.5px 0   var(--sb-stroke),
+       0   -0.5px var(--sb-stroke),
+       0    0.5px var(--sb-stroke),
+       0    2px   6px rgba(0,0,0,.75),
+       0   10px  24px rgba(0,0,0,.55);
+  }
+}
+
+/* Size that adapts to screen */
+.sb-title-xl{ font-size: clamp(1.9rem, 3.2vw + 1rem, 3.4rem); }
+.sb-title-lg{ font-size: clamp(1.4rem, 1.2vw + 1.1rem, 2.1rem); }
+
+/* Optional: subtle blur + tint right behind the text block */
+.sb-matte{
+  background: rgba(0,0,0,.22);
+  backdrop-filter: blur(2px) saturate(88%);
+  -webkit-backdrop-filter: blur(2px) saturate(88%);
+  border: 1px solid rgba(255,255,255,.10);
+  border-radius: 14px;
+  padding: 1rem 1.25rem;
+}
+
+/* Keep lines a readable length */
+.sb-max { max-width: 900px; margin-inline: auto; }
+/* --- About page sizing helpers --- */
+.sb-body-lg{
+  font-size: clamp(1.05rem, 0.6vw + 0.95rem, 1.25rem);
+  line-height: 1.7;
+}
+
+/* You already have .sb-title-lg from the readability kit; if not, keep this: */
+.sb-title-lg{ font-size: clamp(1.6rem, 1.2vw + 1.2rem, 2.2rem); }
+
+/* Section scaffolding (if not present) */
+.sb-section { padding: 3rem 0; position: relative; z-index: 1; }
+.sb-section--alt { background: rgba(0,0,0,0.15); }
+
+/* Keep navbar clickable above sections */
+.navbar { position: relative; z-index: 1000; }
+/* ===== CONTRAST BOOSTER (global overlay + calmer text) ===== */
+
+/* Slightly dim the background photo everywhere */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  /* top darker, middle lighter, bottom a bit darker again */
+  background: linear-gradient(to bottom,
+              rgba(0,0,0,.50) 0%,
+              rgba(0,0,0,.28) 35%,
+              rgba(0,0,0,.35) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Make sections sit above the overlay */
+.hero, .sb-section, main { position: relative; z-index: 1; }
+
+/* Calmer “white” and stronger edge for readability kit */
+:root{
+  --sb-text: #e7ecf4;                 /* off-white, less glare */
+  --sb-stroke: rgba(0,0,0,.65);       /* slightly stronger rim */
+}
+
+/* Stronger headline edge */
+.sb-readable h1,
+.sb-readable .h1,
+.sb-readable h2,
+.sb-readable .h2{
+  -webkit-text-stroke: .8px var(--sb-stroke);
+  text-shadow:
+    0 0 1px rgba(0,0,0,.85),
+    0 2px 6px rgba(0,0,0,.75),
+    0 10px 24px rgba(0,0,0,.55);
+}
+
+/* Optional: a darker glass if you need even more readability */
+.sb-matte--strong{
+  background: rgba(0,0,0,.32);
+  backdrop-filter: blur(3px) saturate(90%);
+  -webkit-backdrop-filter: blur(3px) saturate(90%);
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+/* ========= THEMED SECTIONS (alternating colors) ========= */
+:root{
+  --ink:   #0e1115;   /* very dark */
+  --pine:  #0b3b39;   /* deep green */
+  --teal:  #0f766e;   /* brand teal */
+  --cream: #f2f5f3;   /* light section */
+  --stone: #e7ebef;   /* subtle card on light */
+  --text-dark: #0f1720;
+  --text-light: #eef2f7;
+}
+
+/* Base spacing for sections */
+.sb-section{ padding: 3.5rem 0; position: relative; z-index: 1; }
+
+/* Dark themes (white text) */
+.sb-section--ink  { background: var(--ink);  color: var(--text-light); }
+.sb-section--pine { background: linear-gradient(180deg, #0b3b39 0%, #0a4944 100%); color: var(--text-light); }
+.sb-section--teal { background: linear-gradient(180deg, #0f766e 0%, #0a5c55 100%); color: var(--text-light); }
+
+/* Light theme (dark text) */
+.sb-section--cream{ background: var(--cream); color: var(--text-dark); }
+
+/* Make links readable per theme */
+.sb-section--cream a{ color:#0b5e57; }
+.sb-section--cream a:hover{ color:#094a45; }
+.sb-section--ink a,
+.sb-section--pine a,
+.sb-section--teal a{ color:#d9fbf0; }
+.sb-section--ink a:hover,
+.sb-section--pine a:hover,
+.sb-section--teal a:hover{ color:#ffffff; }
+
+/* Cards that sit IN sections */
+.sb-card{ border-radius: 16px; padding: 1.25rem 1.5rem; }
+.sb-card--glass{          /* for DARK sections */
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(2px) saturate(90%);
+  -webkit-backdrop-filter: blur(2px) saturate(90%);
+}
+.sb-card--solid{          /* for LIGHT sections */
+  background: #ffffff;
+  color: var(--text-dark);
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+}
+
+/* Accent heading style */
+.sb-kicker{
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-weight: 600;
+  font-size: .85rem;
+  opacity: .9;
+  color: #7dd3c7;  /* mint accent on dark */
+}
+.sb-section--cream .sb-kicker{ color:#0a5c55; }
+
+/* Headline spacing on sections */
+.sb-head{ margin-bottom: .75rem; }
+.sb-sub{ margin-top: .5rem; opacity:.9; }
+
+/* Keep navbar clickable above hero */
+.navbar{ position: relative; z-index: 1000; }
+/* ===== Fix: ensure light sections use dark text, and solid cards stay solid ===== */
+.sb-section--cream{ color: var(--text-dark) !important; }
+.sb-section--cream *{ color: var(--text-dark) !important; }           /* headings, paragraphs, lists */
+.sb-section--cream a{ color:#0b5e57 !important; }
+.sb-section--cream a:hover{ color:#094a45 !important; }
+
+/* Some older CSS made .card backgrounds transparent — override that here */
+.sb-card--solid{
+  background:#ffffff !important;
+  color: var(--text-dark) !important;
+  border: 1px solid rgba(0,0,0,.06);
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+}
+.sb-card--solid *{ color: var(--text-dark) !important; }
+/* ===== Only show full-page hero photo on pages that opt-in ===== */
+body.sb-photo{
+  background-image: url("/static/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #fff;
+}
+
+/* Keep content transparent on photo pages so the image shows through */
+body.sb-photo main, 
+body.sb-photo .container, 
+body.sb-photo .card, 
+body.sb-photo .list-group, 
+body.sb-photo .table{
+  background: transparent !important;
 }

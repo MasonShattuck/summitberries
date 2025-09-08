@@ -1,15 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="hero">
-  <div class="hero-inner text-center">
+
+<section class="hero d-flex align-items-center justify-content-center text-center">
+  <div class="hero-inner sb-readable sb-matte sb-max">
     <!-- Logo in center -->
     <img src="{{ url_for('static', filename='logo.png') }}" alt="Summit Berries LLC" class="mb-4" style="max-height: 200px;">
 
     <!-- Tagline -->
-    <h1 class="mb-3">Property Management with Purpose, Precision, and Care</h1>
+    <h1 class="sb-title-xl mb-3">Property Management with Purpose, Precision, and Care</h1>
 
     <!-- CTA button -->
     <a href="/contact" class="btn btn-primary btn-lg">Request a Consultation</a>
   </div>
-</div>
+</section>
+
 {% endblock %}
