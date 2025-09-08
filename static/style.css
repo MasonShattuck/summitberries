@@ -4,6 +4,21 @@
   --sb-dark:    #0b3b39;
   --sb-light:   #f5f7f8;
 }
+/* Force all text to white */
+body, h1, h2, h3, h4, h5, h6, p, li, a, label, input, textarea {
+  color: #ffffff !important;
+}
+a {
+  color: #dce9ff !important;
+}
+a:hover {
+  color: #ffffff !important;
+}
+input, textarea {
+  background: #222 !important;
+  color: #fff !important;
+  border: 1px solid #555 !important;
+}
 
 /* Make the photo the site-wide background (absolute path) */
 html, body { height: 100%; }
