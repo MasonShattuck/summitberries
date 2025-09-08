@@ -4,30 +4,52 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Summit Berries LLC</title>
-<!-- Bootstrap FIRST -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-</head>
 
-<body style="font-family: 'Poppins', sans-serif;">
+  <!-- Bootstrap FIRST -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Fonts (optional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Your CSS AFTER Bootstrap (cache-busted) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=7">
+</head>
+<body class="{% if request.path in ['/', '/services', '/portfolio', '/contact'] %}sb-photo{% endif %}" style="font-family: 'Poppins', sans-serif;">
+
+
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container">
       <a class="navbar-brand" href="/">
         <img src="{{ url_for('static', filename='logo.png') }}" alt="Summit Berries LLC" height="50">
       </a>
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
+
           <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
           <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="/services">Services</a></li>
+
+          <!-- Services dropdown (hover on desktop, click on mobile) -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="/services" id="svcDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Services
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="svcDropdown">
+              <li><a class="dropdown-item" href="/services/snow-removal">Snow Removal</a></li>
+              <li><a class="dropdown-item" href="/services/property-management">Property Management</a></li>
+              <li><a class="dropdown-item" href="/services/maintenance">Maintenance & Repairs</a></li>
+              <li><a class="dropdown-item" href="/services/pool-spa">Pool &amp; Spa (CPO)</a></li>
+            </ul>
+          </li>
+
           <li class="nav-item"><a class="nav-link" href="/portfolio">Portfolio</a></li>
           <li class="nav-item"><a class="nav-link" href="/contact">Contact</a></li>
+
         </ul>
       </div>
     </div>
@@ -41,21 +63,10 @@
   <!-- Footer -->
   <footer class="text-center py-4 bg-dark text-light">
     <p>© 2025 Summit Berries LLC · Park City, Utah</p>
-    <p><a href="mailto:parkcityberries@gmail.com" class="text-light">parkcityberries@gmail.com</a> · (385) 481-0565</p>
+    <p><a href="mailto:parkcityberries@gmail.com" class="text-light">parkcityberries@gmail.com</a> · (385) 481-0698</p>
   </footer>
 
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Route-based background mode: photo on Home/Services/Portfolio/Contact -->
-  <script>
-    (function () {
-      var path = location.pathname.replace(/\/+$/, '');
-      if (path === '' || path === '/' ||
-          path === '/services' || path === '/portfolio' || path === '/contact') {
-        document.body.classList.add('sb-photo');
-      }
-      // About stays solid (no class added)
-    })();
-  </script>
 </body>
 </html>

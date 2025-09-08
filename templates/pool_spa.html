@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="sb-hero d-flex align-items-center justify-content-center text-center" style="min-height: 32vh;">
+  <div class="hero-inner sb-readable sb-matte sb-max">
+    <h1 class="sb-title-lg m-0">Pool &amp; Spa Care (CPO)</h1>
+    <p class="mb-0">Cleaning, chemical balancing, inspections, seasonal open/close.</p>
+  </div>
+</section>
+
+<section class="sb-section sb-section--cream">
+  <div class="container">
+    <div class="sb-card sb-card--solid">
+      <h2 class="h4 mb-3">Services</h2>
+      <ul class="sb-body-lg mb-0">
+        <li>Regular cleaning, chemical balancing, water testing</li>
+        <li>Hot tub maintenance, inspections, seasonal open/close</li>
+        <li>Emergency repairs (leaks, pumps, heaters)</li>
+      </ul>
+    </div>
+
+    <!-- Portfolio grid (uses your existing pool images) -->
+    <div class="row g-4 mt-2">
+      <div class="col-md-6">
+        <div class="sb-card sb-card--solid">
+          <h2 class="h5 mb-3">Before</h2>
+          <img src="{{ url_for('static', filename='portfolio/pool/pool.jpg') }}" class="img-fluid mb-3" alt="Pool before (wide)">
+          <img src="{{ url_for('static', filename='portfolio/pool/pool2.jpg') }}" class="img-fluid" alt="Pool before (close)">
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="sb-card sb-card--solid">
+          <h2 class="h5 mb-3">After</h2>
+          <img src="{{ url_for('static', filename='portfolio/pool/pooldone.jpg') }}" class="img-fluid mb-3" alt="Pool after (wide)">
+          <img src="{{ url_for('static', filename='portfolio/pool/pooldone2.jpg') }}" class="img-fluid" alt="Pool after (close)">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

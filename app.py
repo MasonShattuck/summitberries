@@ -68,6 +68,21 @@ def services():
 @app.route("/portfolio")
 def portfolio():
     return render_template("portfolio.html")
+@app.route("/services/snow-removal")
+def service_snow_removal():
+    return render_template("snow_removal.html")
+
+@app.route("/services/property-management")
+def service_property_management():
+    return render_template("property_management.html")
+
+@app.route("/services/maintenance")
+def service_maintenance():
+    return render_template("maintenance.html")
+
+@app.route("/services/pool-spa")
+def service_pool_spa():
+    return render_template("pool_spa.html")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():

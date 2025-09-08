@@ -406,3 +406,27 @@ body.sb-photo .list-group,
 body.sb-photo .table{
   background: transparent !important;
 }
+/* --- Navbar dropdown: open on hover (desktop), click on mobile --- */
+@media (min-width: 992px){
+  .navbar .dropdown:hover .dropdown-menu{
+    display: block;
+    margin-top: 0; /* align under link */
+  }
+}
+
+/* Make dropdown readable over dark header */
+.navbar .dropdown-menu{
+  background: rgba(15,15,15,0.96);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(6px);
+}
+.navbar .dropdown-item{
+  color: #e9f1f4;
+}
+.navbar .dropdown-item:hover{
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+}
+
+/* Keep navbar on top of hero/content layers */
+.navbar{ position: relative; z-index: 1000; }

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="sb-hero d-flex align-items-center justify-content-center text-center" style="min-height: 32vh;">
+  <div class="hero-inner sb-readable sb-matte sb-max">
+    <h1 class="sb-title-lg m-0">Snow Removal in Park City</h1>
+    <p class="mb-0">Driveways, walkways, entries, private roads — seasonal or on-demand.</p>
+  </div>
+</section>
+
+<section class="sb-section sb-section--cream">
+  <div class="container">
+    <div class="sb-card sb-card--solid">
+      <h2 class="h4 mb-3">What We Offer</h2>
+      <ul class="sb-body-lg mb-0">
+        <li>24/7 storm response & ongoing snow management</li>
+        <li>Driveway, walkway, entry clearing + de-icing</li>
+        <li>Seasonal contracts for private roads & long drives</li>
+        <li>Snow stakes, ice mitigation, safety checks</li>
+      </ul>
+    </div>
+
+    <!-- Portfolio (add images when you have them) -->
+    <div class="row g-4 mt-2">
+      {# Example:
+      <div class="col-md-6"><img class="img-fluid sb-card sb-card--solid" src="{{ url_for('static', filename='portfolio/snow/snow1.jpg') }}" alt="Snow removal - driveway"></div>
+      #}
+      <p class="mb-0">Photos coming soon.</p>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
