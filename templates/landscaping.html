@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<!-- Hero over photo -->
+<section class="sb-hero d-flex align-items-center justify-content-center text-center" style="min-height: 32vh;">
+  <div class="hero-inner sb-readable sb-matte sb-max">
+    <h1 class="sb-title-lg m-0">Landscaping &amp; Property Care</h1>
+    <p class="mb-0">Seasonal upkeep that keeps your property tidy, healthy, and guest-ready.</p>
+  </div>
+</section>
+
+<!-- Solid content section -->
+<section class="sb-section sb-section--cream">
+  <div class="container">
+    <div class="sb-card sb-card--solid">
+        <h2 class="h4 mb-3">Services</h2>
+        <ul class="mb-0">
+          <li>Lawn mowing, edging, and seasonal upkeep</li>
+          <li>Garden &amp; flower bed maintenance</li>
+          <li>Tree &amp; shrub trimming</li>
+          <li>Irrigation system setup &amp; repair</li>
+          <li>Seasonal planting &amp; flower rotations</li>
+          <li>Deck/patio power washing &amp; staining</li>
+          <li>Outdoor furniture setup/storage</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Optional: add photos later (remove onerror when images exist) -->
+    <div class="row g-4">
+      <div class="col-md-6">
+        <img src="{{ url_for('static', filename='portfolio/landscaping/land1.jpg') }}" class="img-fluid rounded shadow-sm" alt="Landscaping example" onerror="this.style.display='none'">
+      </div>
+      <div class="col-md-6">
+        <img src="{{ url_for('static', filename='portfolio/landscaping/land2.jpg') }}" class="img-fluid rounded shadow-sm" alt="Landscaping example" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <a href="/contact" class="btn btn-primary btn-lg">Request a Quote</a>
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}

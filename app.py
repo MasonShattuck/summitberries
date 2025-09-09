@@ -86,6 +86,13 @@ def service_pool_spa():
 @app.route("/services/painting-finishing")
 def service_painting_finishing():
     return render_template("painting_finishing.html")
+@app.route("/services/landscaping")
+def landscaping():
+    return render_template("landscaping.html", page_class="hero-photo")
+
+@app.route("/services/emergency")
+def emergency():
+    return render_template("emergency.html", page_class="hero-photo")
 
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
