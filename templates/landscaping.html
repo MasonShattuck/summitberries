@@ -27,15 +27,24 @@
     </div>
 
     <!-- Optional: add photos later (remove onerror when images exist) -->
-    <div class="row g-4">
-      <div class="col-md-6">
-        <img src="{{ url_for('static', filename='portfolio/landscaping/land1.jpg') }}" class="img-fluid rounded shadow-sm" alt="Landscaping example" onerror="this.style.display='none'">
-      </div>
-      <div class="col-md-6">
-        <img src="{{ url_for('static', filename='portfolio/landscaping/land2.jpg') }}" class="img-fluid rounded shadow-sm" alt="Landscaping example" onerror="this.style.display='none'">
-      </div>
-    </div>
-
+<div class="row g-4 mt-2">
+  <div class="col-md-6">
+    <img class="img-fluid sb-card sb-card--solid"
+         src="{{ url_for('static', filename='portfolio/landscaping/planter.jpg') }}"
+         alt="Ceiling repair">
+  </div>
+  <div class="col-md-6">
+    <img class="img-fluid sb-card sb-card--solid"
+         src="{{ url_for('static', filename='portfolio/landscaping/planter3.jpeg') }}"
+         alt="ceiling repair">
+  </div>
+  </div>
+  <div class="col-md-6">
+    <img class="img-fluid sb-card sb-card--solid"
+         src="{{ url_for('static', filename='portfolio/landscaping/planter2.jpg') }}"
+         alt="ceiling repair">
+  </div>
+</div>
     <div class="text-center mt-4">
       <a href="/contact" class="btn btn-primary btn-lg">Request a Quote</a>
     </div>

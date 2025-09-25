@@ -25,31 +25,39 @@
       </ul>
     </div>
 
-    <!-- Before / After gallery -->
-    <div class="row g-4 mt-2">
-      <div class="col-md-6">
-        <div class="sb-card sb-card--solid">
-          <h2 class="h5 mb-3">Before</h2>
-          <img src="{{ url_for('static', filename='portfolio/painting/garagebefore1.jpeg') }}"
-               class="img-fluid mb-3"
-               alt="Garage repaint — before (angle 1)" loading="lazy">
-          <img src="{{ url_for('static', filename='portfolio/painting/garagebefore2.jpeg') }}"
-               class="img-fluid"
-               alt="Garage repaint — before (angle 2)" loading="lazy">
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="sb-card sb-card--solid">
-          <h2 class="h5 mb-3">After</h2>
-          <img src="{{ url_for('static', filename='portfolio/painting/garageafter1.jpg') }}"
-               class="img-fluid mb-3"
-               alt="Garage repaint — after (angle 1)" loading="lazy">
-          <img src="{{ url_for('static', filename='portfolio/painting/garageafter2.jpg') }}"
-               class="img-fluid"
-               alt="Garage repaint — after (angle 2)" loading="lazy">
-        </div>
+<!-- Before / After gallery -->
+<section class="mt-5">
+  <div class="row g-4 mt-2">
+    <div class="col-md-6">
+      <div class="sb-card sb-card--solid">
+        <h2 class="h5 mb-3">Before</h2>
+        <img src="{{ url_for('static', filename='portfolio/painting/garagebefore1.jpeg') }}"
+             class="img-fluid mb-3"
+             alt="Garage repaint — before (angle 1)" loading="lazy">
+        <img src="{{ url_for('static', filename='portfolio/painting/garagebefore2.jpeg') }}"
+             class="img-fluid mb-3"
+             alt="Garage repaint — before (angle 2)" loading="lazy">
+        <img src="{{ url_for('static', filename='portfolio/painting/garageinside.jpg') }}"
+             class="img-fluid"
+             alt="Garage repaint — before (inside view)" loading="lazy">
       </div>
     </div>
+    <div class="col-md-6">
+      <div class="sb-card sb-card--solid">
+        <h2 class="h5 mb-3">After</h2>
+        <img src="{{ url_for('static', filename='portfolio/painting/garageafter1.jpg') }}"
+             class="img-fluid mb-3"
+             alt="Garage repaint — after (angle 1)" loading="lazy">
+        <img src="{{ url_for('static', filename='portfolio/painting/garageafter2.jpg') }}"
+             class="img-fluid mb-3"
+             alt="Garage repaint — after (angle 2)" loading="lazy">
+        <img src="{{ url_for('static', filename='portfolio/painting/garageinside2.jpg') }}"
+             class="img-fluid"
+             alt="Garage repaint — after (inside view)" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- CTA -->
     <div class="text-center mt-4">
